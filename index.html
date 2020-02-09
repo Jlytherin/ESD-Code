@@ -14,13 +14,21 @@
       <div id="ground"></div>
 
       <div id="player"></div>
-      <div id="over">
+
+      <div class="start">
+        <button id="button" onclick="startGame()"> PLAY </button>
+      </div>
+
+
+      <div id="gameover">
         <h1> GAME OVER </h1>
       </div>
 
-      <div id="start">
-        <button type="button" onclick="start()"> PLAY </button>
-      </div>
+      <audio controls id="audio" controls="false">
+        <source src="The Weeknd - Blinding Lights (Official Instrumental)_.mp3" type="audio/mpeg">
+      </audio>
+      
+    
     </section>
     <script src="game.js"></script>
   </body>

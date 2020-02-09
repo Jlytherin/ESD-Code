@@ -14,10 +14,6 @@ let enemies = document.querySelector("#enemies");
 // minimal margin to the bottom (in pixels)
 let marginBottom = 200;
 
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
 // plane jump speed (in seconds)
 let jumpSpeed = 0.5;
 // how much height is a jump (in pixels)
@@ -29,7 +25,7 @@ let fallSpeed = 2;
 let timeToFallAfterJump = 400;
 
 // delay between two enemies motion (in milliseconds)
-let motionDelay = 2;
+let motionDelay = 8;
 
 // motion distance at each step (in pixels)
 let motionStep = 4;
@@ -37,9 +33,12 @@ let motionStep = 4;
 // other variables
 let spawn, motion, playerGravity;
 
+function startGame(){
+
 /****************************************************
  *** When game starts ***
  ****************************************************/
+
 document.addEventListener("keydown", event => {
   if (event.keyCode === 32) {
     jump()
@@ -48,13 +47,18 @@ document.addEventListener("keydown", event => {
   // do something
 });
 
-
 // enemy motion
 motion = setInterval(function() {
   document.querySelectorAll("#enemies > .eagle").forEach(function(div) {
     move(div);
   });
 }, motionDelay);
+motion2 = setInterval(function () {
+  document.querySelectorAll("#enemies >.owl").forEach
+  (function(div){
+    move(div);
+  });
+},motionDelay);
 
 // player gravity
 // make the player fall
@@ -64,9 +68,9 @@ motion = setInterval(function() {
 // the fall is progressive
 player.style.bottom = marginBottom + "px";
 
-// invoke an enemy
-spawnEnemy();
-intervalID = window.setInterval(spawnEnemy,1500)
+}
+
+
 
 
 /****************************************************
@@ -130,10 +134,25 @@ function spawnEnemy() {
   newObstacle.classList.add("eagle");
   newObstacle.style.bottom = getRndInteger(200, 400) + "px";
   enemies.appendChild(newObstacle);
+
+  let secondObstacle = document.createElement("div");
+  secondObstacle.classList.add("owl");
+  secondObstacle.style.bottom = getRandomArbitrary(200, 400) + "px"
+  enemies.appendChild(second0bstacle);
+
+// invoke an enemy
 }
 
-// move an enemy
+let intervalID = window.setInterval(spawnEnemy,1500)
+
+
 // this function is called for each enemy step
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+
 // see the setInterval above
 function move(div) {
   div.style.left = div.offsetLeft - motionStep + "px";
@@ -145,19 +164,15 @@ function move(div) {
 
   if (isCollision(posPlayer, posObs)) stopAll();
 }
-//allow to start the game 
-function startAll(){
-  startButton.jump(); 
-  
-}
-
 // allow to stop the game
 function stopAll() {
   // hide the player
   player.style.display = "none";
+  gameOver.style.display = "flex";
 
   // stop the enemies motion
   clearInterval(motion);
+  clearInterval(motion2);
 
   // stop to spawn new enemies
   clearInterval(spawn);

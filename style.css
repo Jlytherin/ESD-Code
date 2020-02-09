@@ -1,3 +1,7 @@
+body{
+  margin:0; 
+}
+
 #game {
   position: absolute;
   bottom: 0;
@@ -52,7 +56,19 @@
   background-size: cover;
 }
 
-#over{
+.owl{
+  position: absolute;
+  bottom: 100px;
+  right: 10px;
+
+  width: 60px;
+  height: 60px;
+
+  background: url("img/owl.png");
+  background-size: cover;
+}
+
+#gameover{
   visibility: hidden; 
   position: absolute; 
   width: 600px; 
@@ -62,4 +78,14 @@
   display: flex; 
   justify-content: center; 
 
+}
+
+
+.start{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
